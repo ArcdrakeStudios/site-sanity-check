@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Intentionally public, generated TLS test key; never used outside fixture.example tests"
+paths = ['^tests/fixtures/key\.pem$']

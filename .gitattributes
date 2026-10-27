@@ -1,2 +1,7 @@
 * text=auto eol=lf
 *.png binary
+# Keep reviewed shared browser sources byte-identical across platforms.
+dist/hosted/shared/measurement-contract.mjs text eol=lf
+dist/hosted/shared/measurement-feedback-client.mjs text eol=lf
+hosted/shared/measurement-contract.mjs text eol=lf
+hosted/shared/measurement-feedback-client.mjs text eol=lf

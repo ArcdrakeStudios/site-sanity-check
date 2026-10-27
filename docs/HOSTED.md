@@ -54,3 +54,15 @@ References checked 27 October 2026:
 - https://developers.cloudflare.com/durable-objects/platform/pricing/
 
 The per-target throttle keys the submitted hostname; redirected destinations share the global limits but not a separate hostname bucket. Structured result.limitations codes supplement the visible bilingual notes; the UI uses certificate_unavailable for the certificate limitation.
+
+## Consent and feedback notice update — 27 October 2026
+
+This private source candidate copies the reviewed canonical shared client/contract from the integrated Sites repair (client SHA-256 `3534352a635b1a9daae53492056f51b7754d0c6f40316bb7b311ecd87f46dfb0`). Both copied modules are explicitly LF in `.gitattributes` to preserve byte parity across checkouts. No production push, API activation or deployment is included. Local task behavior and privacy gates remain intact.
+
+The feedback area has a short intro and fields; analytics detail and equally usable allow/decline controls live in the separate branded Privacy choices window. Existing EN/DE privacy/contact links remain. The current client adds exact `noticeVersion: "2026-10-27-mail-v1"` to explicit feedback payloads. This identifies its notice version, not proof that a human read it. An old tab/client without the marker remains storage-only forever; it cannot be replayed into mail.
+
+For revised-notice submissions the website working copy still expires after 30 days, with hourly cleanup under normal operation. Feedback also queues for forwarding through the existing Microsoft 365 transport to Arcdrake's business mailbox. Mailbox correspondence is deleted when no longer needed, subject to statutory obligations or necessary legal claims. A saved receipt confirms website storage/queueing, never inbox delivery or a human response. Existing collected records and exports/copies retain the original promises under which they were collected; there is no retroactive exemption or new manual mailbox/export deletion duty.
+
+Host release must first accept the optional marker with `FEEDBACK_MAIL_ACTIVE="0"`, then supply the existing private mail entrypoint/binding and deploy all revised notices/client adapters. Verify service bindings and Operations Control delivery health before explicitly activating dispatch last. Marker-tagged messages queue while off without transport attempts; old/unmarked records remain legacy. Keep the deliberate active setting in later reviewed deployment configs. Standalone builds with a disabled collection switch remain disabled.
+
+Candidate verification: `npm test` passed 40 tests. Shared client/contract byte parity matches the canonical LF Git blobs; source hashes are pinned where required. The local release package/build completed. No browser, physical-device, live backend or inbox verification is claimed by this source-propagation packet.

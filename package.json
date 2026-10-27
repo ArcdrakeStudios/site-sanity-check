@@ -1,6 +1,6 @@
 {
   "name": "site-sanity-check",
-  "version": "0.1.0-rc.1",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "description": "A bounded website checker with English/German explanations and redacted evidence.",
@@ -15,6 +15,7 @@
     "test:browser": "node scripts/browser.mjs"
   },
   "devDependencies": {
+    "@cloudflare/containers": "0.3.7",
     "playwright": "1.64.1"
   },
   "repository": {

@@ -1,5 +1,5 @@
 // One persisted aggregate record, with no visitor, hostname or scan data.
-// Quotas survive container/Worker restarts; a failed start still consumes a slot.
+// Quotas survive Worker restarts; a failed start still consumes a slot.
 export async function admit(storage, time = Date.now()) {
   return storage.transaction(async tx => {
     const day = Math.floor(time / 86400000), minute = Math.floor(time / 60000);

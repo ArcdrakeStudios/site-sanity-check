@@ -9,4 +9,12 @@ copy.en.notes.unavailable = 'The checker is unavailable. Your URL has not been c
 copy.de.notes.unavailable = 'Die Website-Prüfung ist nicht verfügbar. Eine Prüfung deiner URL wurde nicht bestätigt. Bitte später erneut versuchen.';
 copy.en.notes.daily_capacity = 'Today’s shared check allowance has been reached. Please try again after 00:00 UTC.';
 copy.de.notes.daily_capacity = 'Das gemeinsame Tageskontingent ist aufgebraucht. Bitte nach 00:00 UTC erneut versuchen.';
+copy.en.limits = 'Public hostnames on standard HTTP/HTTPS ports only; numeric IP URLs are not supported. At most six responses of 256 KiB each and 25 seconds per scan. JavaScript is not executed. Login pages, challenges, compression and unusual encodings can make results inconclusive. Certificate expiry and certificate-chain details are not checked. The shared allowance is 100 attempts per UTC day; capacity is not guaranteed.';
+copy.de.limits = 'Nur öffentliche Hostnamen über Standardports für HTTP/HTTPS; numerische IP-URLs werden nicht unterstützt. Höchstens sechs Antworten mit je 256 KiB und 25 Sekunden pro Prüfung. JavaScript wird nicht ausgeführt. Anmeldungen, Schutzseiten, Komprimierung und ungewöhnliche Kodierungen können unklare Ergebnisse liefern. Zertifikatsablauf und Zertifikatsketten werden nicht geprüft. Das gemeinsame Kontingent beträgt 100 Versuche pro UTC-Tag; Verfügbarkeit ist nicht garantiert.';
+copy.en.notes.certificate_unavailable = 'Certificate expiry and certificate-chain details were not inspected. HTTPS connectivity alone is not a complete TLS assessment.';
+copy.de.notes.certificate_unavailable = 'Zertifikatsablauf und Zertifikatsketten wurden nicht geprüft. HTTPS-Erreichbarkeit allein ist keine vollständige TLS-Bewertung.';
+copy.en.notes.hostname_required = 'Enter a public hostname. Numeric IP URLs are not supported by this hosted checker.';
+copy.de.notes.hostname_required = 'Bitte einen öffentlichen Hostnamen eingeben. Numerische IP-URLs werden von dieser gehosteten Prüfung nicht unterstützt.';
+copy.en.notes.header_limit = 'Response headers exceeded the supported size; the response was not inspected.';
+copy.de.notes.header_limit = 'Die Antwortheader überschritten die unterstützte Größe; die Antwort wurde nicht geprüft.';
 export { copy };

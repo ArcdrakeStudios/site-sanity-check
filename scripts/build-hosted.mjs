@@ -13,6 +13,7 @@ html = html.replace('href="/" aria-label="ARCDRAKE home"', 'href="https://tools.
 html = html.replace(/(<p data-t="privacy">)[\s\S]*?(<\/p>)/, (_, before, after) => before + copy.en.privacy + after);
 html = html.replace(/(<p id="url-help"[^>]*>)[\s\S]*?(<\/p>)/, (_, before, after) => before + copy.en.help + after);
 html = html.replace('Runs on your computer · English &amp; Deutsch', 'An Arcdrake tool · English &amp; Deutsch').replace('Runs on your computer · English & Deutsch', 'An Arcdrake tool · English & Deutsch');
+html = html.replace(/(<p data-t="limits">)[\s\S]*?(<\/p>)/, (_, before, after) => before + copy.en.limits + after);
 html = html.replace('</footer>', '<nav aria-label="Footer"><a href="https://tools.arcdrake.com/">All tools / Alle Werkzeuge</a> · <a href="https://arcdrake.com/">Arcdrake</a> · <a href="https://tools.arcdrake.com/privacy/">Privacy</a> · <a href="https://tools.arcdrake.com/de/privacy/">Datenschutz</a> · <a href="https://buymeacoffee.com/arcdrakestudios" rel="noopener noreferrer">Support / Unterstützen</a></nav></footer>');
 html = html.replace('</main>', '<section aria-label="Feedback and privacy choices"><div id="measurement-feedback"></div></section></main>');
 html = html.replace('</head>', '<link rel="canonical" href="https://tools.arcdrake.com/site-check/"></head>');

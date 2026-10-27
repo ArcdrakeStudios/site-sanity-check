@@ -37,9 +37,11 @@ The scanner aims to return a useful result within about 30 seconds. Its total ne
 
 ## Hosted privacy
 
+The hosted edition uses Cloudflare Workers and a SQLite-backed Durable Object, without Containers. Certificate expiry and certificate-chain details are **not inspected**; HTTPS results explicitly record that limitation. Numeric IP URLs are unsupported. DNS preflight checks public addresses on every hop; the actual connection relies on Cloudflare strictly-public fetch routing, not Node-style DNS pinning.
+
 The hosted edition sends your URL to the isolated Arcdrake scanner only when you request a check. Targets see its outgoing IP. Inputs/results stay in memory; a daily pseudonymous client key and target hostname serve short-lived abuse limits. Optional action totals need prior consent and never include URLs or results. Reopen **Privacy choices** to withdraw. [Privacy notice](https://tools.arcdrake.com/privacy/). Shared capacity: 100 attempts per UTC day, ten per minute and two concurrent scans, with additional client/target limits. The fictional example consumes capacity but contacts no target.
 
-## Local privacy and shared scanner limits
+## Local edition privacy and scanner limits
 
 - The app runs a server bound to your computer's loopback interface. Target websites see its requests and your outgoing IP address. DNS resolution uses your machine's configured resolver.
 - Inputs and results are held in memory, not deliberately written to disk. Only language preference is stored in the browser. Your browser, operating system, DNS provider and target server may retain their own data.
@@ -50,7 +52,7 @@ The hosted edition sends your URL to the isolated Arcdrake scanner only when you
 - Compressed responses and unsupported character encodings are not inspected. JavaScript is not executed. Logins, challenges, large responses or exhausted budgets may be inconclusive.
 - Detection is deliberately narrow: entity-encoded/dynamic text and builder shortcodes with more than 200 attribute characters may be missed. Certificate observations describe the responding server/CDN, not a hidden origin. No apex/www expansion, crawling, private-file guessing or credential verification occurs.
 
-Keep `server.mjs` bound to loopback. The separate hosted adapter uses a private gateway, authenticated scanner, persistent quotas and isolated Node container. See [hosted architecture](docs/HOSTED.md).
+Keep `server.mjs` bound to loopback. The separate hosted adapter uses a private gateway, authenticated scanner, persistent quotas and a SQLite-backed Durable Object on Cloudflare Workers Free. See [hosted architecture](docs/HOSTED.md).
 
 ## Development
 

@@ -41,7 +41,7 @@ Höchstens sechs GET-Anfragen einschließlich Weiterleitungen, HTTP-Variante und
 
 Komprimierte Antworten, nicht unterstützte Zeichenkodierungen und per JavaScript erzeugte Inhalte werden nicht untersucht. Schutzseiten, große Antworten oder ausgeschöpfte Budgets können unklare Ergebnisse liefern. Erkennung ist heuristisch; unter anderem können kodierte Texte und Shortcodes mit mehr als 200 Attributzeichen übersehen werden. Kein Crawling, kein Erraten privater Dateien, keine Prüfung von Zugangsdaten, keine Varianten mit/ohne www oder verborgenen Ursprungsservern. Zertifikate beschreiben den antwortenden Server oder das CDN.
 
-`server.mjs` bleibt an Loopback gebunden. Die getrennte gehostete Ausgabe verwendet ein privates Gateway, einen authentifizierten Scanner, dauerhafte Quoten und einen isolierten Node-Container. [Hosting-Architektur](docs/HOSTED.md).
+`server.mjs` bleibt an Loopback gebunden. Die getrennte gehostete Ausgabe verwendet ein privates Gateway, einen authentifizierten Scanner, dauerhafte Quoten und ein SQLite-basiertes Durable Object auf Cloudflare Workers Free. [Hosting-Architektur](docs/HOSTED.md).
 
 ## Entwicklung
 
@@ -56,3 +56,5 @@ npm run test:browser
 Unter Linux: `npx --no-install playwright install --with-deps chromium`. Tests verwenden synthetische Daten und lokale HTTP/TLS-Server. Ports 43146 und 43147 freihalten. Browser und Testserver werden geschlossen. Windows/Node 24/Chromium wurden lokal geprüft; die Ubuntu-Konfiguration ist noch kein Nachweis eines erfolgreichen GitHub-CI-Laufs.
 
 Weitere Hinweise auf Englisch: [Beiträge](CONTRIBUTING.md), [private Sicherheitsmeldungen](SECURITY.md), [Architektur](docs/ARCHITECTURE.md), [Drittanbieter](THIRD_PARTY_NOTICES.md). [MIT-Lizenz](LICENSE).
+
+Die gehostete Ausgabe prüft keinen Zertifikatsablauf und keine Zertifikatsketten. Numerische IP-URLs werden nicht unterstützt. Diese Grenzen werden vor der Prüfung und im Ergebnis angezeigt. Kein Container und kein zusätzliches Abonnement erforderlich.

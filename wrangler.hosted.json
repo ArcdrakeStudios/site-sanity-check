@@ -4,8 +4,27 @@
   "compatibility_date": "2026-09-14",
   "workers_dev": false,
   "preview_urls": false,
-  "observability": { "enabled": false },
-  "containers": [{ "class_name": "ScannerContainer", "image": "./Dockerfile", "instance_type": "lite", "max_instances": 1 }],
-  "durable_objects": { "bindings": [{ "name": "SCANNER", "class_name": "ScannerContainer" }] },
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ScannerContainer"] }]
+  "observability": {
+    "enabled": false
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "SCANNER",
+        "class_name": "Scanner"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "Scanner"
+      ]
+    }
+  ],
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ]
 }

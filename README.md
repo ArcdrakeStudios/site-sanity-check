@@ -22,6 +22,10 @@ Open **http://127.0.0.1:43145** and choose **Try a fictional example**. No depen
 
 For a real check, enter a public domain or HTTP(S) URL you are authorized to check. Your computer will contact that website. Do not enter private or signed links, credentials, or client-confidential data.
 
+## Certificate checks in the public local edition
+
+The public repository retains the full local Node checker, including certificate-expiry inspection and normal TLS certificate/hostname validation. Run it locally to use these checks. Connections originate from your computer/network: targets can observe that connection and outgoing IP. Never submit private or signed links. Results concern the responding server/CDN certificate, not a hidden origin or a guarantee of security. The hosted Workers edition explicitly omits certificate-expiry inspection.
+
 ## What it checks
 
 | Check | What you can learn |

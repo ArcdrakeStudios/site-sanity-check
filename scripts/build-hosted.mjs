@@ -29,7 +29,7 @@ app = app.replace("render();if(lastStatus)", "render();window.dispatchEvent(new 
 app = app.replace("let last=null", "const requestedLanguage=new URL(location.href).searchParams.get('lang');if(['en','de'].includes(requestedLanguage))lang=requestedLanguage;\nlet last=null");
 writeFileSync(path.join(out, 'app.mjs'), app);
 for (const name of ['style.css', 'i18n.mjs']) copyFileSync(path.join(root, 'public', name), path.join(out, name));
-copyFileSync(path.join(root, 'hosted/copy.mjs'), path.join(out, 'hosted-copy.mjs'));
+writeFileSync(path.join(out, 'hosted-copy.mjs'), readFileSync(path.join(root, 'hosted/copy.mjs'), 'utf8').replace("from '../public/i18n.mjs'", "from './i18n.mjs'"));
 copyFileSync(path.join(root, 'hosted/feedback.mjs'), path.join(out, 'feedback.mjs'));
 mkdirSync(path.join(out, 'shared'));
 for (const name of ['measurement-contract.mjs', 'measurement-feedback-client.mjs'])

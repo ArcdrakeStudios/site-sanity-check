@@ -4,7 +4,7 @@ Spot common website problems and understand what to fix, with readable explanati
 
 [Deutsch](README.de.md) · [Arcdrake](https://arcdrake.com/) · [More Arcdrake tools](https://tools.arcdrake.com/)
 
-**Version 0.1.0-rc.1 — release candidate.** Run it on your own computer; there is no hosted version of this checker. It is a small public-response check, not a security audit or a guarantee that a website is safe.
+**Version 0.1.0.** [Use the hosted checker](https://tools.arcdrake.com/site-check/) or run the local edition on your computer. It is a small public-response check, not a security audit or a guarantee that a website is safe.
 
 ![English results for a fictional website](docs/images/desktop.png)
 
@@ -22,6 +22,10 @@ Open **http://127.0.0.1:43145** and choose **Try a fictional example**. No depen
 
 For a real check, enter a public domain or HTTP(S) URL you are authorized to check. Your computer will contact that website. Do not enter private or signed links, credentials, or client-confidential data.
 
+## Certificate checks in the public local edition
+
+The public repository retains the full local Node checker, including certificate-expiry inspection and normal TLS certificate/hostname validation. Run it locally to use these checks. Connections originate from your computer/network: targets can observe that connection and outgoing IP. Never submit private or signed links. Results concern the responding server/CDN certificate, not a hidden origin or a guarantee of security. The hosted Workers edition explicitly omits certificate-expiry inspection.
+
 ## What it checks
 
 | Check | What you can learn |
@@ -35,7 +39,13 @@ Each group says **Looks OK**, **Needs attention** or **Inconclusive**. Expand a 
 
 The scanner aims to return a useful result within about 30 seconds. Its total network budget is 25 seconds; a timeout produces limited or inconclusive results.
 
-## Privacy and limits
+## Hosted privacy
+
+The hosted edition uses Cloudflare Workers and a SQLite-backed Durable Object, without Containers. Certificate expiry and certificate-chain details are **not inspected**; HTTPS results explicitly record that limitation. Numeric IP URLs are unsupported. DNS preflight checks public addresses on every hop; the actual connection relies on Cloudflare strictly-public fetch routing, not Node-style DNS pinning.
+
+The hosted edition sends your URL to the isolated Arcdrake scanner only when you request a check. Targets see its outgoing IP. Inputs/results stay in memory; a daily pseudonymous client key and target hostname serve short-lived abuse limits. Optional action totals need prior consent and never include URLs or results. Reopen **Privacy choices** to withdraw. [Privacy notice](https://tools.arcdrake.com/privacy/). Shared capacity: 100 attempts per UTC day, ten per minute and two concurrent scans, with additional client/target limits. The fictional example consumes capacity but contacts no target.
+
+## Local edition privacy and scanner limits
 
 - The app runs a server bound to your computer's loopback interface. Target websites see its requests and your outgoing IP address. DNS resolution uses your machine's configured resolver.
 - Inputs and results are held in memory, not deliberately written to disk. Only language preference is stored in the browser. Your browser, operating system, DNS provider and target server may retain their own data.
@@ -46,7 +56,7 @@ The scanner aims to return a useful result within about 30 seconds. Its total ne
 - Compressed responses and unsupported character encodings are not inspected. JavaScript is not executed. Logins, challenges, large responses or exhausted budgets may be inconclusive.
 - Detection is deliberately narrow: entity-encoded/dynamic text and builder shortcodes with more than 200 attribute characters may be missed. Certificate observations describe the responding server/CDN, not a hidden origin. No apex/www expansion, crawling, private-file guessing or credential verification occurs.
 
-Keep this loopback application local. It is not packaged as a public multi-user service. Hosting it publicly requires a separate abuse, deployment and privacy design.
+Keep `server.mjs` bound to loopback. The separate hosted adapter uses a private gateway, authenticated scanner, persistent quotas and a SQLite-backed Durable Object on Cloudflare Workers Free. See [hosted architecture](docs/HOSTED.md).
 
 ## Development
 

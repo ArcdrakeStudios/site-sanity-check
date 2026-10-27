@@ -36,7 +36,10 @@ export class Scanner {
       try {
         input = JSON.parse(await readBounded(request, 4096, AbortSignal.any([signal, AbortSignal.timeout(5000)])));
         if (!input || typeof input !== 'object' || Array.isArray(input) || Object.keys(input).some(k => k !== 'url')) throw Error();
-        if (new URL(request.url).pathname === '/scan') target = normalize(input.url);
+        if (new URL(request.url).pathname === '/scan') {
+          target = normalize(input.url);
+          if (/^[\d.]+$/.test(target.hostname) || target.hostname.includes(':')) return send(400, { error: 'hostname_required' });
+        }
       } catch (error) { return send(error.code === 'body_limit' ? 413 : 400, { error: error.code === 'unsafe_address' ? error.code : 'invalid_url' }); }
       const time = Date.now(), client = request.headers.get('X-Scanner-Client'); this.prune(time);
       const clients = this.clients.get(client) ?? [], targets = this.targets.get(target?.hostname) ?? [];

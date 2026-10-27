@@ -56,3 +56,10 @@ test('Worker rejects unsupported content, encoding, DNS failures and response ov
   }
   await assert.rejects(createWorkerFetcher({ fetchImpl: async () => new Response('{}', { status: 500 }) }).fetch('https://example.com'), { code: 'dns_failed' });
 });
+
+ test('hosted note codes and limitations resolve in both languages', async () => {
+  const {copy} = await import('../hosted/copy.mjs');
+  const codes = ['hostname_required','header_limit','certificate_unavailable','daily_capacity','unavailable','unsafe_address','dns_failed','body_limit','request_timeout','total_timeout','cancelled','unsupported_content','unsupported_encoding','request_limit','redirect_loop','redirect_limit','redirect_missing','cross_origin_asset','request_denied','request_failed'];
+  for (const lang of ['en','de']) for (const code of codes) assert.equal(typeof copy[lang].notes[code], 'string', lang+':'+code);
+  assert.match(copy.en.limits,/Certificate expiry/); assert.match(copy.de.limits,/Zertifikatsablauf/);
+});

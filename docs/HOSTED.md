@@ -52,3 +52,5 @@ References checked 27 October 2026:
 - https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
 - https://developers.cloudflare.com/durable-objects/platform/limits/
 - https://developers.cloudflare.com/durable-objects/platform/pricing/
+
+The per-target throttle keys the submitted hostname; redirected destinations share the global limits but not a separate hostname bucket. Structured result.limitations codes supplement the visible bilingual notes; the UI uses certificate_unavailable for the certificate limitation.

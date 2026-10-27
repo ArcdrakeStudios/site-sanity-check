@@ -35,6 +35,7 @@ test('real workerd executes private Worker/SQLite DO, scan, limits, restart quot
   try {
     assert.equal((await mf.dispatchFetch('https://scanner.internal/scan', { method: 'POST', body: '{}' })).status, 403);
     assert.equal(contacts.length, 0);
+    assert.equal((await run('https://8.8.8.8')).status, 400);
     assert.equal((await run('http://127.0.0.1')).status, 400); assert.equal(contacts.length, 0);
     const result = await (await run('https://example.com/')).json();
     assert.equal(result.families.placeholders.state, 'attention', JSON.stringify({result,contacts}));

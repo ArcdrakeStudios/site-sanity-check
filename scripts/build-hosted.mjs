@@ -1,6 +1,7 @@
 // Assemble static /site-check/ assets without running, provisioning or publishing a service.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import path from 'node:path';
+import { copy } from '../hosted/copy.mjs';
 const root = path.resolve(import.meta.dirname, '..');
 const out = path.resolve(root, process.argv[2] ?? '.runtime/hosted');
 if (!out.startsWith(root + path.sep) || existsSync(out)) throw Error('Use a fresh output directory inside the checkout');
@@ -9,7 +10,8 @@ let html = readFileSync(path.join(root, 'public/index.html'), 'utf8');
 html = html.replace('href="/style.css"', 'href="./style.css"').replace('src="/app.mjs"', 'src="./app.mjs"');
 html = html.replace('href="/" aria-label="ARCDRAKE home"', 'href="https://tools.arcdrake.com/" aria-label="All Arcdrake tools"');
 // No pre-hydration claim that a public server is the visitor's local computer.
-html = html.replace(/(<p data-t="privacy">)[\s\S]*?(<\/p>)/, '$1Your URL is sent to the Arcdrake scanner only when you request a check. Read the privacy notice before submitting private information.$2');
+html = html.replace(/(<p data-t="privacy">)[\s\S]*?(<\/p>)/, (_, before, after) => before + copy.en.privacy + after);
+html = html.replace(/(<p id="url-help"[^>]*>)[\s\S]*?(<\/p>)/, (_, before, after) => before + copy.en.help + after);
 html = html.replace('Runs on your computer · English &amp; Deutsch', 'An Arcdrake tool · English &amp; Deutsch').replace('Runs on your computer · English & Deutsch', 'An Arcdrake tool · English & Deutsch');
 html = html.replace('</footer>', '<nav aria-label="Footer"><a href="https://tools.arcdrake.com/">All tools / Alle Werkzeuge</a> · <a href="https://arcdrake.com/">Arcdrake</a> · <a href="https://tools.arcdrake.com/privacy/">Privacy</a> · <a href="https://tools.arcdrake.com/de/privacy/">Datenschutz</a> · <a href="https://buymeacoffee.com/arcdrakestudios" rel="noopener noreferrer">Support / Unterstützen</a></nav></footer>');
 html = html.replace('</main>', '<section aria-label="Feedback and privacy choices"><div id="measurement-feedback"></div></section></main>');
